@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Varada Crystal — World Class Fragrance & Natural Mineral Care</title>
+  <meta name="description" content="Discover pure luxury fragrance and 100% natural alum deodorant spray crafted for all-day confidence and timeless elegance.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%23050E1B' stroke='%23FFFFFF' stroke-width='6'/><circle cx='50' cy='50' r='20' fill='%23FFFFFF'/></svg>" type="image/svg+xml">
+
+  <!-- Google Fonts for Ultra-Luxury Editorial Look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- 1. HIGH-FASHION EDITORIAL HERO VIEWPORT (EXACT REFERENCE DESIGN) -->
+  <section class="hero-editorial-viewport" id="hero">
+    
+    <!-- Left Vertical Sidebar Strip with Navigation (Shop, Categories, Why Varada, Reviews) -->
+    <aside class="editorial-left-sidebar" aria-label="Quick Navigation">
+      <a href="index.html" class="brand-dot-logo" aria-label="Varada Home"></a>
+      
+      <div class="sidebar-nav-links">
+        <a href="shop.html" class="sidebar-nav-link sidebar-shop-highlight">Shop Store</a>
+        <a href="javascript:void(0)" onclick="openCategoryDrawer()" class="sidebar-nav-link">Categories</a>
+        <a href="#benefits" class="sidebar-nav-link">Why Varada</a>
+        <a href="#reviews" class="sidebar-nav-link">Reviews</a>
+      </div>
+
+      <a href="shop.html" class="sidebar-shop-pill-btn" aria-label="Shop Full Collection" title="Shop All Products">
+        🛍️
+      </a>
+    </aside>
+
+    <!-- Main Editorial Stage -->
+    <div class="editorial-main-stage">
+      
+      <!-- Fluid Ambient Curve Line in Background -->
+      <svg class="ambient-curve-svg" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 380 C 180 320, 120 180, 260 220 C 400 260, 480 80, 720 160" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <path d="M20 280 C 240 380, 360 140, 520 260 C 640 360, 700 120, 780 200" stroke="rgba(0, 180, 216, 0.25)" stroke-width="1.2"/>
+      </svg>
+
+      <!-- Top Header Bar -->
+      <header class="editorial-top-bar">
+        <div class="top-brand-text">VARADA CRYSTAL</div>
+
+        <div class="top-right-group">
+          <a href="shop.html" class="top-nav-item" style="color: var(--color-blue-azure); font-weight: 700;">All Products (7)</a>
+          <span class="top-year-tag">©2026</span>
+
+          <!-- Category Trigger Button with Animated Lines -->
+          <button class="category-trigger-btn" id="categoryDrawerOpenBtn" onclick="openCategoryDrawer()" aria-label="Open Categories">
+            <span>Category</span>
+            <div class="category-lines">
+              <span></span>
+              <span></span>
+            </div>
+          </button>
+
+          <!-- Shopping Bag Trigger -->
+          <button class="top-cart-btn" id="cartToggleBtn" aria-label="View Shopping Cart">
+            <span>Bag</span>
+            <span class="cart-count-pill" id="cartCountBadge">0</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Center Canvas: Giant Typography + Overlapping Photo Cards -->
+      <div class="editorial-center-canvas">
+        
+        <!-- Giant Overlapping Typography -->
+        <div class="editorial-giant-title">
+          <span class="giant-word word-world">World</span>
+          <span class="giant-word word-class">Class</span>
+          <span class="giant-word word-fragrance">fragrance</span>
+        </div>
+
+        <!-- Center Main Bottle Image Card (Bleu de Chanel / Varada Crystal Style) -->
+        <div class="editorial-photo-primary">
+          <img src="hero-bottle.jpg" alt="Varada Crystal Luxury Fragrance & Natural Deodorant Bottle" id="heroMainImg">
+        </div>
+
+        <!-- Right Side Narrative & Pill CTA -->
+        <div class="editorial-right-block">
+          <p class="editorial-narrative">
+            Available premium-quality natural alum deodorant spray & pure personal care, crafted in Bikaner with proven 24hr protection. Refresh your day.
+          </p>
+          <a href="shop.html" class="btn-editorial-pill">
+            <span>Explore</span>
+            <span class="arrow-icon">↗</span>
+          </a>
+        </div>
+
+        <!-- Secondary Bottom-Right Photo Card (Calvin Klein Clean White Silk Style) -->
+        <div class="editorial-photo-secondary">
+          <img src="teaser-bottle.jpg" alt="Varada Crystal Pure Mineral Hydration" id="heroTeaserImg">
+        </div>
+
+      </div>
+
+      <!-- Bottom Metrics Strip -->
+      <div class="editorial-bottom-strip">
+        <div class="bottom-tagline-box">
+          <p>Discover 100% natural mineral protection for all-day pure confidence and freshness.</p>
+        </div>
+
+        <div class="bottom-metrics-group">
+          <div class="metric-unit">
+            <span class="metric-number">90+</span>
+            <span class="metric-label">Perfumes & Blends</span>
+          </div>
+
+          <div class="metric-unit">
+            <span class="metric-number">15M+</span>
+            <span class="metric-label">Happy Customers</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 2. SLIDE-OUT CATEGORY DRAWER OVERLAY -->
+  <div class="category-drawer-overlay" id="categoryDrawerOverlay" aria-hidden="true">
+    <div class="category-drawer">
+      <div>
+        <div class="category-drawer-header">
+          <h3>Explore Categories</h3>
+          <button class="category-drawer-close" onclick="closeCategoryDrawer()">&times;</button>
+        </div>
+
+        <div class="category-links-list">
+          <a href="shop.html" class="drawer-cat-item">
+            <span class="drawer-cat-name">✨ All Products</span>
+            <span class="drawer-cat-count">7</span>
+          </a>
+          <a href="shop.html" class="drawer-cat-item">
+            <span class="drawer-cat-name">💎 Natural Deodorants</span>
+            <span class="drawer-cat-count">3</span>
+          </a>
+          <a href="shop.html" class="drawer-cat-item">
+            <span class="drawer-cat-name">⚡ Value Bundles & Sets</span>
+            <span class="drawer-cat-count">3</span>
+          </a>
+          <a href="shop.html" class="drawer-cat-item">
+            <span class="drawer-cat-name">🌿 Body & Bath Care</span>
+            <span class="drawer-cat-count">Coming Soon</span>
+          </a>
+          <a href="shop.html" class="drawer-cat-item">
+            <span class="drawer-cat-name">🌸 Aromatherapy Mists</span>
+            <span class="drawer-cat-count">Coming Soon</span>
+          </a>
+        </div>
+      </div>
+
+      <div style="border-top: 1px solid var(--border-subtle); padding-top: 20px;">
+        <p style="font-size: 0.85rem; color: var(--text-light-muted); margin-bottom: 12px;">Looking for our full catalog?</p>
+        <a href="shop.html" class="btn btn-blue btn-block">Visit Store Page ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. SECTION: CURATED SPOTLIGHT (CLEAN WHITE SECTION) -->
+  <section class="section-white" id="spotlight">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag-light">FEATURED RELEASES</span>
+        <h2 class="section-title-dark">The Signature Formulation</h2>
+        <div class="blue-divider-center">✦</div>
+        <p class="section-subtitle-dark">
+          Handcrafted in Bikaner with 100% natural crystalline potassium alum and pure botanicals for 24-hour non-sticky confidence.
+        </p>
+      </div>
+
+      <div class="spotlight-card-grid">
+        <!-- Spotlight Card 1 -->
+        <div class="spotlight-card">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+            <span class="badge-tag badge-bestseller">FLAGSHIP BESTSELLER</span>
+            <span style="font-size: 0.8rem; font-weight: 700; color: #059669;">IN STOCK</span>
+          </div>
+          <h3 style="font-family: var(--font-serif); font-size: 1.4rem; color: var(--text-dark-primary); margin-bottom: 8px;">Varada Signature Natural Spray (100ml)</h3>
+          <p style="font-size: 0.92rem; color: var(--text-dark-secondary); margin-bottom: 20px; line-height: 1.6; flex: 1;">
+            100% pure mineral alum spray with zero aluminum chlorohydrate, alcohol, or parabens. 450+ micro mists lasting 2–3 months.
+          </p>
+          <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 20px; padding-top: 12px; border-top: 1px solid var(--border-light-subtle);">
+            <span style="font-size: 1.6rem; font-weight: 800; color: var(--text-dark-primary);">₹349.00</span>
+            <span style="font-size: 0.95rem; color: var(--text-dark-muted); text-decoration: line-through;">₹399.00</span>
+            <span class="product-save-pill">SAVE ₹50</span>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn btn-blue" style="flex: 1;" onclick="addToCart('Single Bottle (100ml)', 349, 1)">Add to Bag</button>
+            <a href="shop.html" class="btn btn-light-outline">Details ↗</a>
+          </div>
+        </div>
+
+        <!-- Spotlight Card 2 -->
+        <div class="spotlight-card">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+            <span class="badge-tag badge-bestseller">POPULAR BUNDLE</span>
+            <span style="font-size: 0.8rem; font-weight: 700; color: #059669;">SAVE 10%</span>
+          </div>
+          <h3 style="font-family: var(--font-serif); font-size: 1.4rem; color: var(--text-dark-primary); margin-bottom: 8px;">Varada Duo Pack (2x 100ml)</h3>
+          <p style="font-size: 0.92rem; color: var(--text-dark-secondary); margin-bottom: 20px; line-height: 1.6; flex: 1;">
+            His & Hers combo. Keep one bottle at home and one in your office or gym bag. Includes free express shipping across India.
+          </p>
+          <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 20px; padding-top: 12px; border-top: 1px solid var(--border-light-subtle);">
+            <span style="font-size: 1.6rem; font-weight: 800; color: var(--text-dark-primary);">₹629.00</span>
+            <span style="font-size: 0.95rem; color: var(--text-dark-muted); text-decoration: line-through;">₹698.00</span>
+            <span class="product-save-pill">SAVE ₹69</span>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn btn-blue" style="flex: 1;" onclick="addToCart('Duo Pack (2x 100ml)', 629, 1)">Add to Bag</button>
+            <a href="shop.html" class="btn btn-light-outline">Details ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prominent Store Gateway CTA Button -->
+      <div class="text-center">
+        <a href="shop.html" class="btn btn-navy btn-lg" style="box-shadow: 0 8px 25px rgba(10, 37, 64, 0.15);">
+          <span>Explore All 7 Products in Store</span>
+          <span style="font-size: 1.2rem;">↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. SECTION: WHY VARADA (LIGHT GLACIAL SLATE SECTION) -->
+  <section class="section-light-slate" id="benefits">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag-light">KEY ADVANTAGES</span>
+        <h2 class="section-title-dark">Why Choose Varada Crystal?</h2>
+        <div class="blue-divider-center">✦</div>
+        <p class="section-subtitle-dark">
+          Crafted for discerning individuals who refuse to compromise between safety and high-performance freshness.
+        </p>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card-light">
+          <div class="benefit-icon-light">🛡️</div>
+          <h3>Kills Odor Bacteria Naturally</h3>
+          <p>Potassium alum forms an invisible mineral shield on the skin surface that inhibits odor-causing bacteria growth without artificial clogging.</p>
+        </div>
+
+        <div class="benefit-card-light">
+          <div class="benefit-icon-light">🌿</div>
+          <h3>100% Pure Natural Minerals</h3>
+          <p>Infused with purified crystalline alum, soothing botanical aloe vera, and witch hazel extracts. Zero synthetic additives or propellants.</p>
+        </div>
+
+        <div class="benefit-card-light">
+          <div class="benefit-icon-light">🌸</div>
+          <h3>Subtle Natural Breeze Scent</h3>
+          <p>Mild, crisp aroma derived purely from natural essential oils that never clashes with your favorite luxury perfume or cologne.</p>
+        </div>
+
+        <div class="benefit-card-light">
+          <div class="benefit-icon-light">💧</div>
+          <h3>24-Hour Active Confidence</h3>
+          <p>Engineered for high humidity and active Indian lifestyles. One morning application protects against commute humidity and workout sweat.</p>
+        </div>
+
+        <div class="benefit-card-light">
+          <div class="benefit-icon-light">✨</div>
+          <h3>Ultra-Gentle & Non-Darkening</h3>
+          <p>Free of pore-clogging aluminum chlorohydrate and drying alcohols. Prevents underarm darkening and post-shave burning.</p>
+        </div>
+
+        <div class="benefit-card-light">
+          <div class="benefit-icon-light">👥</div>
+          <h3>For Men & Women of All Ages</h3>
+          <p>Formulated for everyday universal wellness. Non-staining clear mist that leaves zero white residue on dark fabrics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. SECTION: THE PURE PROMISE (CLEAN WHITE SECTION) -->
+  <section class="section-white" id="pure-promise">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag-light">UNCOMPROMISING PURITY</span>
+        <h2 class="section-title-dark">The Pure Promise: Varada vs Conventional</h2>
+        <div class="blue-divider-center">✦</div>
+        <p class="section-subtitle-dark">
+          See the honest scientific difference between commercial aerosol antiperspirants and our clean potassium alum formula.
+        </p>
+      </div>
+
+      <div class="comparison-table-light-wrapper">
+        <table class="comparison-table-light">
+          <thead>
+            <tr>
+              <th style="width: 34%;">Feature / Ingredient</th>
+              <th class="col-varada" style="width: 33%;">💎 Varada Crystal</th>
+              <th style="width: 33%;">⚠️ Conventional Deodorants</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Aluminum Type</strong></td>
+              <td class="col-varada"><span style="color: #059669; font-weight: 800;">✓</span> Natural Potassium Alum (Non-pore blocking)</td>
+              <td><span style="color: #EF4444;">✗</span> Aluminum Chlorohydrate (Plugs sweat pores)</td>
+            </tr>
+            <tr>
+              <td><strong>Alcohol & Gas Propellants</strong></td>
+              <td class="col-varada"><span style="color: #059669; font-weight: 800;">✓</span> 0% Alcohol / 0% Aerosol Gas</td>
+              <td><span style="color: #EF4444;">✗</span> High Alcohol (Burns skin) & LPG Gas</td>
+            </tr>
+            <tr>
+              <td><strong>Skin Staining & Fabric Marks</strong></td>
+              <td class="col-varada"><span style="color: #059669; font-weight: 800;">✓</span> 100% Clear Mist (Zero yellow stains)</td>
+              <td><span style="color: #EF4444;">✗</span> Leaves chalky white & yellow residue</td>
+            </tr>
+            <tr>
+              <td><strong>Parabens & Phthalates</strong></td>
+              <td class="col-varada"><span style="color: #059669; font-weight: 800;">✓</span> Completely Free</td>
+              <td><span style="color: #EF4444;">✗</span> Commonly used synthetic preservatives</td>
+            </tr>
+            <tr>
+              <td><strong>Mechanism of Action</strong></td>
+              <td class="col-varada"><span style="color: #059669; font-weight: 800;">✓</span> Eliminates odor bacteria while skin breathes</td>
+              <td><span style="color: #EF4444;">✗</span> Artificially forces sweat glands shut</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SECTION: PACKAGING SPECS (LIGHT GLACIAL SLATE SECTION) -->
+  <section class="section-light-slate" id="specs">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag-light">BOTTLE SPECS</span>
+        <h2 class="section-title-dark">Designed with Premium Precision</h2>
+        <div class="blue-divider-center">✦</div>
+      </div>
+
+      <div class="specs-grid">
+        <div class="spec-box-light">
+          <div class="spec-icon-light">🧪</div>
+          <h4>100ml / 3.38 fl. oz.</h4>
+          <p>450+ micro sprays. Lasts 2–3 months of daily use.</p>
+        </div>
+        <div class="spec-box-light">
+          <div class="spec-icon-light">💨</div>
+          <h4>Micro-Mist Diffusion</h4>
+          <p>Even, non-drip 360° dispersion that dries in 15 seconds.</p>
+        </div>
+        <div class="spec-box-light">
+          <div class="spec-icon-light">⏳</div>
+          <h4>24-Month Shelf Life</h4>
+          <p>Guaranteed freshness batch with 12M PAO seal.</p>
+        </div>
+        <div class="spec-box-light">
+          <div class="spec-icon-light">♻️</div>
+          <h4>Eco-Conscious Bottle</h4>
+          <p>100% recyclable, BPA-free polymer with UV shielding.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. SECTION: HOW IT WORKS (CLEAN WHITE SECTION) -->
+  <section class="section-white" id="how-it-works">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag-light">APPLICATION</span>
+        <h2 class="section-title-dark">How To Use Varada Crystal</h2>
+        <div class="blue-divider-center">✦</div>
+      </div>
+
+      <div class="steps-timeline-grid">
+        <div class="usage-step-card-light">
+          <span class="step-number-light">01</span>
+          <h4>Cleanse & Pat Dry</h4>
+          <p>Take your morning shower and gently pat underarms or target skin areas dry.</p>
+        </div>
+        <div class="usage-step-card-light">
+          <span class="step-number-light">02</span>
+          <h4>Spray 2-3 Pumps</h4>
+          <p>Hold bottle 15cm away and spray 2–3 pumps evenly across each underarm area.</p>
+        </div>
+        <div class="usage-step-card-light">
+          <span class="step-number-light">03</span>
+          <h4>Enjoy 24h Purity</h4>
+          <p>Dries in 15 seconds without stickiness. Experience all-day natural confidence!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. SECTION: REVIEWS (LIGHT GLACIAL SLATE SECTION) -->
+  <section class="section-light-slate" id="reviews">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag-light">TESTIMONIALS</span>
+        <h2 class="section-title-dark">Loved by Thousands Across India</h2>
+        <div class="blue-divider-center">✦</div>
+      </div>
+
+      <div class="reviews-masonry-grid">
+        <div class="review-card-light">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote-light">
+            "I have tried literally every natural deodorant from crystal sticks to creams. Sticks were inconvenient and creams stained my white shirts. Varada Crystal spray is a game changer! Keeps me fresh through 10-hour workdays in Mumbai humidity."
+          </p>
+          <div class="review-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-details">
+              <strong>Ananya K.</strong>
+              <span>Verified Buyer • Mumbai</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card-light">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote-light">
+            "Zero burning sensation even right after trimming. My skin feels clean and breathable, unlike aerosol sprays that used to choke me in the morning."
+          </p>
+          <div class="review-author">
+            <div class="author-avatar">RS</div>
+            <div class="author-details">
+              <strong>Rohit S.</strong>
+              <span>Verified Buyer • Bengaluru</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card-light">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote-light">
+            "Bought the 3-bottle Family Pack for myself, my husband, and my daughter. Clean, gentle, and the duo travel bottle is super handy."
+          </p>
+          <div class="review-author">
+            <div class="author-avatar">PM</div>
+            <div class="author-details">
+              <strong>Pooja M.</strong>
+              <span>Verified Buyer • Delhi NCR</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. SECTION: FAQS (CLEAN WHITE SECTION) -->
+  <section class="section-white" id="faq">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag-light">FREQUENTLY ASKED QUESTIONS</span>
+        <h2 class="section-title-dark">Everything You Need to Know</h2>
+        <div class="blue-divider-center">✦</div>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item-light">
+          <button class="faq-question-light" aria-expanded="false">
+            <span>Is Varada Crystal suitable for sensitive skin?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-light">
+            <p>Yes, absolutely! Varada Crystal is 100% alcohol-free and formulated with skin-soothing potassium alum, aloe vera, and witch hazel. It will not sting or cause irritation.</p>
+          </div>
+        </div>
+
+        <div class="faq-item-light">
+          <button class="faq-question-light" aria-expanded="false">
+            <span>Will this stain my dark or white clothes?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-light">
+            <p>No! Because Varada Crystal is 100% clear and mineral-based, it dries clean without staining clothes or leaving chalky white marks.</p>
+          </div>
+        </div>
+
+        <div class="faq-item-light">
+          <button class="faq-question-light" aria-expanded="false">
+            <span>What are the shipping times across India?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer-light">
+            <p>All orders dispatch within 24 hours from Bikaner. Metro deliveries arrive within 2–3 business days with full WhatsApp and SMS live tracking.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. FOOTER (DEEP ROYAL NAVY) -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div>
+          <span class="footer-brand-title">VARADA CRYSTAL</span>
+          <p class="footer-tagline">"World Class Fragrance & Mineral Care"</p>
+          <p class="footer-bio">Clean, alum-infused personal care formulated to preserve your body's natural balance while providing all-day freshness.</p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Store & Categories</h4>
+          <ul class="footer-links">
+            <li><a href="shop.html">Shop All 7 Products</a></li>
+            <li><a href="shop.html">Natural Deodorants</a></li>
+            <li><a href="shop.html">Value Bundles</a></li>
+            <li><a href="shop.html">Body Care</a></li>
+            <li><a href="shop.html">Aromatherapy Mists</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Crafted In</h4>
+          <address class="footer-address">
+            <strong>Varada Crystal</strong><br>
+            Kishnasar, Nokha Tehsil,<br>
+            Bikaner, Rajasthan - 334803<br>
+            <strong>Direct:</strong> +91 98765 43210<br>
+            <strong>Email:</strong> care@varadacrystal.com
+          </address>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">Top Lookbook</a></li>
+            <li><a href="#benefits">Why Varada</a></li>
+            <li><a href="#pure-promise">The Pure Promise</a></li>
+            <li><a href="#reviews">Customer Reviews</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p class="copyright-text">&copy; 2026 Varada Crystal. All rights reserved. World Class Purity.</p>
+        <p class="copyright-text">Made with Pure Minerals in India 🇮🇳</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 11. SHOPPING CART DRAWER -->
+  <div class="cart-drawer-overlay" id="cartOverlay" aria-hidden="true">
+    <aside class="cart-drawer" role="dialog" aria-label="Shopping Cart">
+      <div class="cart-header">
+        <div class="cart-title-wrap">
+          <h3>Shopping Bag (<span id="drawerCartCount">0</span>)</h3>
+        </div>
+        <button class="cart-close-btn" id="cartCloseBtn" aria-label="Close bag">&times;</button>
+      </div>
+
+      <div class="shipping-meter-box">
+        <div class="meter-text" id="shippingMeterText">Add ₹150 more for <strong>FREE SHIPPING!</strong></div>
+        <div class="meter-track">
+          <div class="meter-fill" id="shippingMeterFill" style="width: 70%;"></div>
+        </div>
+      </div>
+
+      <div class="cart-items-container" id="cartItemsList"></div>
+
+      <div class="cart-footer" id="cartFooter">
+        <div class="cart-subtotal-row">
+          <span>Subtotal</span>
+          <span class="subtotal-amount" id="cartSubtotal">₹0.00</span>
+        </div>
+        <p class="tax-shipping-note">Taxes included. Free shipping applied on ₹499+.</p>
+        <button class="btn btn-blue btn-block" onclick="triggerCheckout()">
+          <span>Proceed to Secure Checkout</span>
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- 12. CHECKOUT MODAL -->
+  <div class="modal-backdrop" id="checkoutModal" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeCheckoutModal()">&times;</button>
+      <div class="modal-success-icon">✓</div>
+      <h3 class="modal-title">Thank You For Choosing Varada!</h3>
+      <p class="modal-desc">Your order has been registered. You will receive an instant WhatsApp confirmation with dispatch tracking.</p>
+      <div class="modal-order-summary" id="modalOrderSummary"></div>
+      <button class="btn btn-navy btn-block" onclick="closeCheckoutModal()">Continue Shopping</button>
+    </div>
+  </div>
+
+  <!-- Toast Notifications -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>
