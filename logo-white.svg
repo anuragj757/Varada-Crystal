@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" fill="none">
+  <defs>
+    <!-- Cyan to Azure Blue Wave Gradient -->
+    <linearGradient id="waveGradientWhite" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="50%" stop-color="#00B4D8"/>
+      <stop offset="100%" stop-color="#0077ED"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 4-Point Crystal Sparkle Star -->
+  <g transform="translate(200, 22)">
+    <path d="M0 -15 Q0 0 15 0 Q0 0 0 15 Q0 0 -15 0 Q0 0 0 -15 Z" fill="#38BDF8"/>
+  </g>
+
+  <!-- Serif Letter 'V' in White -->
+  <g transform="translate(200, 75)">
+    <path d="M-52 -45 L-12 55 H12 L52 -45 H38 L6 32 L-26 -45 Z" fill="#FFFFFF"/>
+    <!-- Top Serifs -->
+    <path d="M-58 -46 H-26 V-42 H-58 Z" fill="#FFFFFF"/>
+    <path d="M26 -46 H58 V-42 H26 Z" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Dynamic Fluid Crystal Water Wave -->
+  <path d="M130 110 C155 120 185 95 205 78 C225 62 250 65 268 72 C252 75 235 88 215 102 C190 120 160 125 130 110 Z" fill="url(#waveGradientWhite)"/>
+
+  <!-- VARADA Typography in White -->
+  <text x="200" y="168" font-family="'Cinzel', 'Playfair Display', Georgia, serif" font-size="34" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="6">VARADA</text>
+
+  <!-- CRYSTAL Subtext with Flank Lines -->
+  <line x1="110" y1="188" x2="145" y2="188" stroke="#00B4D8" stroke-width="1.5"/>
+  <text x="200" y="193" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="700" fill="#00B4D8" text-anchor="middle" letter-spacing="8">CRYSTAL</text>
+  <line x1="255" y1="188" x2="290" y2="188" stroke="#00B4D8" stroke-width="1.5"/>
+
+  <!-- Bottom Botanical Leaf Divider -->
+  <g transform="translate(200, 212)">
+    <line x1="-80" y1="0" x2="-20" y2="0" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+    <path d="M0 0 C-4 -6 -4 -12 0 -16 C4 -12 4 -6 0 0 Z" fill="none" stroke="#38BDF8" stroke-width="1.2"/>
+    <path d="M-2 -2 C-10 -4 -14 -1 -16 6 C-10 6 -4 4 -2 -2 Z" fill="none" stroke="#38BDF8" stroke-width="1.2"/>
+    <path d="M2 -2 C10 -4 14 -1 16 6 C10 6 4 4 2 -2 Z" fill="none" stroke="#38BDF8" stroke-width="1.2"/>
+    <line x1="20" y1="0" x2="80" y2="0" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+  </g>
+
+  <!-- Tagline -->
+  <text x="200" y="232" font-family="'Playfair Display', Georgia, serif" font-style="italic" font-size="12" fill="rgba(255,255,255,0.8)" text-anchor="middle" letter-spacing="0.5">✦ Nature's purity. Timeless confidence. ✦</text>
+</svg>

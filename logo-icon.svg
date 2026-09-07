@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="waveIconGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="50%" stop-color="#00B4D8"/>
+      <stop offset="100%" stop-color="#0066FF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 4-Point Crystal Sparkle Star -->
+  <path d="M50 8 Q50 18 60 18 Q50 18 50 28 Q50 18 40 18 Q50 18 50 8 Z" fill="#38BDF8"/>
+
+  <!-- Serif V -->
+  <path d="M22 25 L45 88 H55 L78 25 H68 L50 72 L32 25 Z" fill="#FFFFFF"/>
+  <path d="M18 25 H36 V28 H18 Z" fill="#FFFFFF"/>
+  <path d="M64 25 H82 V28 H64 Z" fill="#FFFFFF"/>
+
+  <!-- S-Curve Wave Swoosh -->
+  <path d="M16 62 C30 70 48 52 60 40 C72 28 84 32 94 36 C84 38 72 48 60 58 C46 70 30 74 16 62 Z" fill="url(#waveIconGrad)"/>
+</svg>

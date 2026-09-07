@@ -132,27 +132,36 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  width: auto;
+  height: auto;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
   position: relative;
-  transition: all 0.3s var(--transition-smooth);
+  transition: transform 0.25s var(--transition-smooth), opacity 0.25s ease;
 }
 
 .brand-dot-logo::after {
-  content: '';
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #FFFFFF;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+  content: none;
+  display: none;
 }
 
 .brand-dot-logo:hover {
-  transform: scale(1.1);
-  border-color: var(--color-blue-azure);
-  box-shadow: 0 0 20px var(--color-cyan-glow);
+  transform: scale(1.08);
+  border: none;
+  box-shadow: none;
+}
+
+.brand-dot-logo img {
+  width: 32px;
+  height: 32px;
+  display: block;
+  transition: filter 0.25s ease;
+}
+
+.brand-dot-logo:hover img {
+  filter: drop-shadow(0 0 12px rgba(0, 180, 216, 0.8));
 }
 
 .sidebar-nav-links {
