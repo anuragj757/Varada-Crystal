@@ -588,22 +588,91 @@
     </aside>
   </div>
 
-  <!-- 12. CHECKOUT MODAL -->
+  <!-- 12. CHECKOUT & PAYMENTS MODAL -->
   <div class="modal-backdrop" id="checkoutModal" aria-hidden="true">
-    <div class="modal-box">
+    <div class="modal-box modal-box-wide">
       <button class="modal-close" onclick="closeCheckoutModal()">&times;</button>
-      <div class="modal-success-icon">✓</div>
-      <h3 class="modal-title">Thank You For Choosing Varada!</h3>
-      <p class="modal-desc">Your order has been registered. You will receive an instant WhatsApp confirmation with dispatch tracking.</p>
-      <div class="modal-order-summary" id="modalOrderSummary"></div>
-      <button class="btn btn-navy btn-block" onclick="closeCheckoutModal()">Continue Shopping</button>
+      
+      <!-- State 1: Shipping Details & Order Review Form -->
+      <div id="checkoutFormState">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px;">
+          <span style="font-size: 1.4rem;">🔒</span>
+          <h3 class="modal-title" style="margin: 0;">Express Shipping & Payment</h3>
+        </div>
+        <p class="modal-desc" style="margin-bottom: 16px;">Enter your delivery address to proceed with 256-bit encrypted Razorpay payment.</p>
+        
+        <!-- Order Summary Box -->
+        <div class="modal-order-summary" id="modalOrderSummary"></div>
+
+        <form id="checkoutShippingForm" onsubmit="handleCheckoutFormSubmit(event)">
+          <div class="checkout-form-grid">
+            <div class="checkout-field-row">
+              <div class="checkout-input-group">
+                <label for="checkoutName">Full Name *</label>
+                <input type="text" id="checkoutName" class="checkout-input" placeholder="e.g. Ananya Sharma" required>
+              </div>
+              <div class="checkout-input-group">
+                <label for="checkoutPhone">Mobile Number *</label>
+                <input type="tel" id="checkoutPhone" class="checkout-input" placeholder="10-digit number" pattern="[0-9]{10}" required>
+              </div>
+            </div>
+
+            <div class="checkout-input-group">
+              <label for="checkoutEmail">Email Address *</label>
+              <input type="email" id="checkoutEmail" class="checkout-input" placeholder="name@example.com" required>
+            </div>
+
+            <div class="checkout-input-group">
+              <label for="checkoutAddress">Delivery Address *</label>
+              <input type="text" id="checkoutAddress" class="checkout-input" placeholder="House/Flat No., Street Name, Area" required>
+            </div>
+
+            <div class="checkout-field-row">
+              <div class="checkout-input-group">
+                <label for="checkoutCity">City *</label>
+                <input type="text" id="checkoutCity" class="checkout-input" placeholder="City" required>
+              </div>
+              <div class="checkout-input-group">
+                <label for="checkoutPincode">Pincode *</label>
+                <input type="text" id="checkoutPincode" class="checkout-input" placeholder="6-digit Pincode" pattern="[0-9]{6}" required>
+              </div>
+            </div>
+          <!-- Accepted Payment Methods / UPI Badges -->
+          <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 10px 14px; margin-bottom: 16px;">
+            <div style="font-size: 0.74rem; font-weight: 700; color: var(--text-light-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">Supported Payment Methods:</div>
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; font-size: 0.82rem; font-weight: 700; color: #FFFFFF;">
+              <span style="background: rgba(0, 180, 216, 0.15); padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(0, 180, 216, 0.3);">🟢 Google Pay</span>
+              <span style="background: rgba(139, 92, 246, 0.15); padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(139, 92, 246, 0.3);">⚡ PhonePe</span>
+              <span style="background: rgba(14, 165, 233, 0.15); padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(14, 165, 233, 0.3);">🔵 Paytm / QR</span>
+              <span style="background: rgba(245, 158, 11, 0.15); padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(245, 158, 11, 0.3);">💳 Cards & Netbanking</span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-blue btn-block" id="payRazorpayBtn" style="font-size: 1.05rem; padding: 14px;">
+            <span>Pay via UPI / Card with Razorpay 💳</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- State 2: Order Confirmation & Payment Success -->
+      <div id="checkoutSuccessState" style="display: none;">
+        <div class="modal-success-icon">✓</div>
+        <h3 class="modal-title">Payment Successful!</h3>
+        <p class="modal-desc">Thank you for choosing Varada Crystal. Your order has been placed successfully.</p>
+
+        <div class="modal-order-summary" id="modalSuccessDetails"></div>
+
+        <button class="btn btn-navy btn-block" onclick="closeCheckoutModal()">Continue Shopping</button>
+      </div>
+
     </div>
   </div>
 
   <!-- Toast Notifications -->
   <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
-  <!-- JavaScript -->
+  <!-- Razorpay SDK & JavaScript -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

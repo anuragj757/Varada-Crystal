@@ -411,30 +411,51 @@ function initAccordions() {
 }
 
 /* ==========================================================================
-   9. CHECKOUT TRIGGER & MODAL
+   9. SECURE RAZORPAY CHECKOUT & PAYMENT VERIFICATION ENGINE
    ========================================================================== */
 function triggerCheckout() {
-  if (cart.length === 0) {
+  if (!cart || cart.length === 0) {
     showToast('Your bag is empty! Please add a product to checkout.');
     return;
   }
 
   closeCart();
+
   const modal = document.getElementById('checkoutModal');
+  const formState = document.getElementById('checkoutFormState');
+  const successState = document.getElementById('checkoutSuccessState');
   const summaryBox = document.getElementById('modalOrderSummary');
+
+  // Reset modal state
+  if (formState) formState.style.display = 'block';
+  if (successState) successState.style.display = 'none';
 
   if (summaryBox) {
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const shipping = subtotal >= 499 ? 'FREE' : '₹49.00';
+    const shippingFee = subtotal >= 499 ? 0 : 49;
+    const shippingText = subtotal >= 499 ? 'FREE (Express India Shipping)' : '₹49.00';
+    const grandTotal = subtotal + shippingFee;
 
     summaryBox.innerHTML = `
-      <p style="margin-bottom: 6px;"><strong>Items Ordered:</strong> ${totalItems} item(s)</p>
-      <ul style="list-style: none; margin-bottom: 8px; color: var(--text-light-muted);">
-        ${cart.map(item => `<li>• ${item.name} x ${item.quantity} (₹${item.price * item.quantity})</li>`).join('')}
+      <p style="margin-bottom: 6px; font-weight:700; color:#FFFFFF;">Order Breakdown (${totalItems} item${totalItems > 1 ? 's' : ''}):</p>
+      <ul style="list-style: none; padding-left: 0; margin-bottom: 10px; color: var(--text-light-muted); line-height: 1.6;">
+        ${cart.map(item => `<li>• ${item.name} × ${item.quantity} — <strong style="color:#FFF;">₹${(item.price * item.quantity).toFixed(2)}</strong></li>`).join('')}
       </ul>
-      <p style="border-top: 1px solid var(--border-subtle); padding-top: 6px;"><strong>Shipping:</strong> ${shipping}</p>
-      <p style="font-size: 1.05rem; color: var(--color-blue-azure); font-weight: 800;"><strong>Total Payable:</strong> ₹${subtotal.toFixed(2)}</p>
+      <div style="border-top: 1px solid var(--border-subtle); padding-top: 8px; margin-top: 8px;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+          <span>Subtotal:</span>
+          <strong>₹${subtotal.toFixed(2)}</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+          <span>Shipping:</span>
+          <span style="color: #059669; font-weight:700;">${shippingText}</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size: 1.05rem; color: var(--color-blue-azure); font-weight: 800; border-top: 1px solid var(--border-subtle); padding-top: 6px; margin-top: 6px;">
+          <span>Total Payable:</span>
+          <span>₹${grandTotal.toFixed(2)}</span>
+        </div>
+      </div>
     `;
   }
 
@@ -449,6 +470,179 @@ function closeCheckoutModal() {
   if (modal) {
     modal.classList.remove('show');
     modal.setAttribute('aria-hidden', 'true');
+  }
+  resetPayButton();
+}
+
+function resetPayButton() {
+  const payBtn = document.getElementById('payRazorpayBtn');
+  if (payBtn) {
+    payBtn.disabled = false;
+    payBtn.innerHTML = '<span>Pay & Complete Order with Razorpay 💳</span>';
+  }
+}
+
+async function handleCheckoutFormSubmit(event) {
+  event.preventDefault();
+
+  const payBtn = document.getElementById('payRazorpayBtn');
+  if (payBtn) {
+    payBtn.disabled = true;
+    payBtn.innerHTML = '<span>⏳ Creating Secure Razorpay Order...</span>';
+  }
+
+  const customerData = {
+    name: document.getElementById('checkoutName')?.value?.trim() || '',
+    phone: document.getElementById('checkoutPhone')?.value?.trim() || '',
+    email: document.getElementById('checkoutEmail')?.value?.trim() || '',
+    address: document.getElementById('checkoutAddress')?.value?.trim() || '',
+    city: document.getElementById('checkoutCity')?.value?.trim() || '',
+    pincode: document.getElementById('checkoutPincode')?.value?.trim() || ''
+  };
+
+  try {
+    // 1. Call Backend API to create Razorpay Order
+    const response = await fetch('/api/create-order', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        items: cart,
+        customer: customerData
+      })
+    });
+
+    const orderData = await response.json();
+
+    if (!response.ok || !orderData.success) {
+      throw new Error(orderData.error || 'Server failed to initialize Razorpay order');
+    }
+
+    if (payBtn) {
+      payBtn.innerHTML = '<span>💳 Opening Payment Gateway...</span>';
+    }
+
+    // 2. Configure Razorpay Standard Checkout SDK Options
+    const options = {
+      key: orderData.key_id,
+      amount: orderData.amount,
+      currency: orderData.currency || 'INR',
+      name: 'Varada Crystal',
+      description: `Fragrance Order (#${orderData.order_id.slice(-6)})`,
+      image: 'logo-icon.svg',
+      order_id: orderData.order_id,
+      handler: async function (rzpResponse) {
+        if (payBtn) {
+          payBtn.innerHTML = '<span>🔒 Verifying Payment Signature...</span>';
+        }
+        await verifyRazorpayPayment(rzpResponse, customerData, orderData);
+      },
+      prefill: {
+        name: customerData.name,
+        email: customerData.email,
+        contact: customerData.phone,
+        method: 'upi'
+      },
+      method: {
+        upi: true,
+        card: true,
+        netbanking: true,
+        wallet: true
+      },
+      notes: {
+        address: `${customerData.address}, ${customerData.city} - ${customerData.pincode}`
+      },
+      theme: {
+        color: '#00B4D8'
+      },
+      modal: {
+        ondismiss: function () {
+          resetPayButton();
+          showToast('Payment process paused. You can retry anytime.');
+        }
+      }
+    };
+
+    // 3. Launch Razorpay Widget
+    if (typeof Razorpay !== 'undefined') {
+      const rzp = new Razorpay(options);
+      rzp.on('payment.failed', function (response) {
+        resetPayButton();
+        showToast(`❌ Payment Failed: ${response.error.description || 'Transaction declined.'}`);
+      });
+      rzp.open();
+    } else {
+      // Mock / Offline Test Fallback if SDK script isn't loaded
+      console.warn('Razorpay SDK script not found. Triggering test verification fallback...');
+      await verifyRazorpayPayment({
+        razorpay_order_id: orderData.order_id,
+        razorpay_payment_id: `pay_mock_${Date.now()}`,
+        razorpay_signature: `sig_mock_${Date.now()}`
+      }, customerData, orderData);
+    }
+
+  } catch (err) {
+    console.error('Checkout error:', err);
+    resetPayButton();
+    showToast(`⚠️ Order Error: ${err.message}`);
+  }
+}
+
+async function verifyRazorpayPayment(rzpResponse, customerData, orderData) {
+  try {
+    const verifyRes = await fetch('/api/verify-payment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        razorpay_order_id: rzpResponse.razorpay_order_id,
+        razorpay_payment_id: rzpResponse.razorpay_payment_id,
+        razorpay_signature: rzpResponse.razorpay_signature,
+        order_details: {
+          items: cart,
+          customer: customerData,
+          amount_inr: orderData.amount_inr
+        }
+      })
+    });
+
+    const verifyResult = await verifyRes.json();
+
+    if (verifyRes.ok && verifyResult.success) {
+      // Clear Cart
+      cart = [];
+      saveCartToStorage();
+      renderCart();
+
+      // Show Success View
+      const formState = document.getElementById('checkoutFormState');
+      const successState = document.getElementById('checkoutSuccessState');
+      const detailsBox = document.getElementById('modalSuccessDetails');
+
+      if (formState) formState.style.display = 'none';
+      if (successState) successState.style.display = 'block';
+
+      if (detailsBox) {
+        detailsBox.innerHTML = `
+          <p style="margin-bottom:6px; color:#059669; font-weight:700;">✓ Transaction Verified</p>
+          <p><strong>Payment ID:</strong> <span style="font-family:monospace; color:#FFF;">${verifyResult.paymentId}</span></p>
+          <p><strong>Order ID:</strong> <span style="font-family:monospace; color:#FFF;">${verifyResult.orderId}</span></p>
+          <p><strong>Amount Paid:</strong> ₹${(orderData.amount_inr || 0).toFixed(2)}</p>
+          <p><strong>Deliver To:</strong> ${customerData.name}, ${customerData.address}, ${customerData.city} - ${customerData.pincode}</p>
+          <p><strong>Contact:</strong> ${customerData.phone} | ${customerData.email}</p>
+        `;
+      }
+
+      showToast('🎉 Payment Verified & Order Confirmed!');
+    } else {
+      throw new Error(verifyResult.error || 'Payment signature verification failed');
+    }
+  } catch (err) {
+    console.error('Payment verification error:', err);
+    resetPayButton();
+    showToast(`❌ Verification Error: ${err.message}`);
   }
 }
 
